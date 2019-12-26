@@ -1,0 +1,69 @@
+<div class="jumbtron"> 
+    <h1 class="display-4 text-center">Roles</h1>
+    <hr/>
+    <div class="row">   
+        <div class="col-md-8">  
+            <form [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">  
+                    <div class="col-md-8 pr-3 mt-2">
+                        <input type="text" ngModel 
+                        pattern="[A-Za-z]{1,15}"
+                        maxlength="15"
+                        [ngClass]="{ 'is-invalid':  submitted && f.Role.errors }" 
+                        formControlName="Role" 
+                        id="EmployeeRole" 
+                        class="form-control col-md-8 float-right" 
+                        placeholder="Employee Role">
+                        <div *ngIf="submitted && f.Role.errors" class="invalid-feedback">
+                            <div *ngIf="f.Role.errors.required">Employee role is required</div>
+                            <div *ngIf="f.Role.errors.pattern">Only alphabets are required</div>
+                            <div *ngIf="f.Role.errors.maxlength">maximum length is 15</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8 pr-3 mt-2">
+                        <button class="form-control col-md-8" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
+                    </div>
+                </div>     
+            </form>
+        </div>
+        <div class="col-md-4">  
+            <table class="table table-hover">
+                <th>Roles</th>
+                <tr *ngFor="let r of RoleList">
+                    <td>{{r.Text}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger"  (click)="onDelete(r.Value)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>      
+</div>
+<!-- <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+    <div class="row">
+        <div class="col-md-8">
+            <input type="text" ngModel 
+                   pattern="[A-Za-z]{1,15}"
+                   maxlength="15"
+                   [ngClass]="{ 'is-invalid':  submitted && f.Role.errors }" 
+                   formControlName="Role" 
+                   id="EmployeeRole" 
+                   class="form-control col-md-6 float-right" 
+                   placeholder="Employee Role">
+            <div *ngIf="submitted && f.Role.errors" class="invalid-feedback">
+                <div *ngIf="f.Role.errors.required">Employee role is required</div>
+                <div *ngIf="f.Role.errors.pattern">Only alphabets are required</div>
+                <div *ngIf="f.Role.errors.maxlength">maximum length is 15</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 pr-3 mt-2">
+            <button mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
+        </div>
+    </div>     
+</form> -->

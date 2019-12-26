@@ -1,0 +1,167 @@
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Receipt</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">  
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input type="text"                 
+                                pattern="^[^-\s][a-zA-Z0-9_\s-]+$"
+                                maxlength="10"
+                                [ngClass]="{ 'is-invalid':  submitted && f.SNo.errors }" 
+                                formControlName="SNo" 
+                                id="SNo" 
+                                class="form-control col-md-12 float-right" 
+                                placeholder="Serial No. for e.g (A 400)">
+                        <div *ngIf="submitted && f.SNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.SNo.errors.required">Serial No is required</div>
+                            <div *ngIf="f.SNo.errors.pattern">Please match the correct pattern</div>
+                            <div *ngIf="f.SNo.errors.maxlength">maximum length is 10 characters</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pr-3 mt-2">
+                        <select id="FileID" 
+                                name="FileID" 
+                                formControlName="FileID"
+                                [ngClass]="{ 'is-invalid':  submitted && f.FileID.errors }" 
+                                class="form-control col-md-12 float-right">
+                            <option value="" selected disabled hidden>Please select file no.</option>
+                            <option *ngFor="let f of FileList" [value]="f.Value">{{f.Text}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.FileID.errors" class="invalid-feedback">
+                            <div *ngIf="f.FileID.errors.required">File number is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">  
+                    <div class="col-md-6 pr-3 mt-2">
+                        <ng-select 
+                            bindLabel="name"
+                            formControlName="SectorID"
+                            placeholder="Please select sector"
+                            class="custom"
+                            [ngClass]="{ 'is-invalid':  submitted && f.SectorID.errors }"
+                            [selectableGroupAsModel]="false"
+                            [searchable]="true" 
+                            [clearable]="true"
+                            [(ngModel)]="selected"
+                            (change)="GetHouseList($event)">
+                            <ng-option *ngFor="let s of SectorList" [value]="s.Value" [disabled]="s.disabled">
+                                {{s.Text}}
+                            </ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.SectorID.errors" class="invalid-feedback">
+                            <div *ngIf="f.SectorID.errors.required">Sector No. is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pr-3 mt-2">
+                        <ng-select 
+                            bindLabel="name"
+                            formControlName="HouseID"
+                            placeholder="Please select house N.o" 
+                            class="custom"
+                            [ngClass]="{ 'is-invalid':  submitted && f.HouseID.errors }"
+                            [selectableGroupAsModel]="false"
+                            [searchable]="true" 
+                            [clearable]="true">
+                            <ng-option *ngFor="let h of HouseList" [value]="h.HouseId" [disabled]="h.disabled">
+                                {{h.HouseNo}}
+                            </ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.HouseID.errors" class="invalid-feedback">
+                            <div *ngIf="f.HouseID.errors.required">House No. is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">  
+                    <div class="col-md-6 pr-3 mt-2">
+                        <ng-select 
+                            bindLabel="name"
+                            formControlName="MessrsID"
+                            placeholder="Please select Messr name" 
+                            class="custom"
+                            [ngClass]="{ 'is-invalid':  submitted && f.MessrsID.errors }"
+                            [selectableGroupAsModel]="false"
+                            [searchable]="true" 
+                            [clearable]="true">
+                            <ng-option *ngFor="let m of MessrsList" [value]="m.Id" [disabled]="m.disabled">
+                                {{m.Name}}
+                            </ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.MessrsID.errors" class="invalid-feedback">
+                            <div *ngIf="f.MessrsID.errors.required">Messr name is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input class="form-control"
+                            #datepickerYMD="bsDatepicker"
+                            bsDatepicker
+                            formControlName="ReceiptDate"
+                            [ngClass]="{ 'is-invalid':  submitted && f.ReceiptDate.errors }"  
+                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue' }">
+                        <div *ngIf="submitted && f.ReceiptDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.ReceiptDate.errors.required">Receipt date is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">  
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input type="text"
+                                maxlength="12"
+                                [ngClass]="{ 'is-invalid':  submitted && f.CaseTotalCost.errors }" 
+                                formControlName="CaseTotalCost" 
+                                id="CaseTotalCost" 
+                                class="form-control col-md-12 float-right" 
+                                placeholder="Total Amount"
+                                prefix="Rs. "
+                                separatorLimit="000"
+                                mask="separator.3"
+                                thousandSeparator=",">
+                        <div *ngIf="submitted && f.CaseTotalCost.errors" class="invalid-feedback">
+                            <div *ngIf="f.CaseTotalCost.errors.required">Total amount of the case is required</div>
+                            <div *ngIf="f.CaseTotalCost.errors.maxlength">Max amount would be 99 lacs</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                            <input type="text"
+                                    id="Amount"
+                                    name="Amount"
+                                    formControlName="Amount"
+                                    [ngClass]="{ 'is-invalid':  submitted && f.Amount.errors }"
+                                    placeholder="Advance"
+                                    maxlength="12"                                                                                                     
+                                    class="form-control col-md-12 float-right"
+                                    prefix="Rs. "
+                                    separatorLimit="000"
+                                    mask="separator.3"
+                                    thousandSeparator=",">
+                            <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
+                                <div *ngIf="f.Amount.errors.maxlength">Max amount would be 99 lacs</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-md-12 pr-3 mt-2">
+                        <textarea id="Description" 
+                                  name="Description" 
+                                  formControlName="Description"
+                                  [ngClass]="{ 'is-invalid':  submitted && f.Description.errors }"
+                                  placeholder="Description"
+                                  class="form-control col-md-12 float-right">
+                        </textarea>
+                        <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+                            <div *ngIf="f.Description.errors.required">Description is required</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
+                    </div>
+                </div>     
+            </form>
+        </div>
+    </div>
+</div>

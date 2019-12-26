@@ -1,0 +1,87 @@
+<div class="jumbtron"> 
+    <h1 class="display-4 text-center">Messr</h1>
+    <hr/>
+    <div class="row">   
+        <div class="col-md-6">  
+            <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">  
+                    <div class="col-md-12 pr-3 mt-2">
+                        <input type="text" ngModel 
+                            pattern="^[a-zA-Z ][a-zA-Z0-9-_\. ]{1,50}$"
+                            maxlength="50"
+                            [ngClass]="{ 'is-invalid':  submitted && f.Name.errors }" 
+                            formControlName="Name" 
+                            id="Name" 
+                            class="form-control col-md-12 float-right" 
+                            placeholder="Messr Name">
+                        <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                            <div *ngIf="f.Name.errors.required">Messr name is required</div>
+                            <div *ngIf="f.Name.errors.pattern">Only alphabets are allowed</div>
+                            <div *ngIf="f.Name.errors.maxlength">maximum length is 50 characters</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">  
+                    <div class="col-md-12 pr-3 mt-2">
+                        <input type="text" ngModel 
+                            pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}"
+                            maxlength="11"
+                            [ngClass]="{ 'is-invalid':  submitted && f.PhoneNo.errors }" 
+                            formControlName="PhoneNo" 
+                            id="PhoneNo" 
+                            class="form-control col-md-12 float-right" 
+                            placeholder="Phone No.">
+                        <div *ngIf="submitted && f.PhoneNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.PhoneNo.errors.required">Phone No is required</div>
+                            <div *ngIf="f.PhoneNo.errors.pattern">Please provide correct phone No</div>
+                            <div *ngIf="f.PhoneNo.errors.maxlength">maximum length is 11 characters</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">  
+                    <div class="col-md-12 pr-3 mt-2">
+                        <input type="text" ngModel 
+                            pattern="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$"
+                            maxlength="15"
+                            [ngClass]="{ 'is-invalid':  submitted && f.Cnic.errors }" 
+                            formControlName="Cnic" 
+                            id="Cnic" 
+                            class="form-control col-md-12 float-right" 
+                            placeholder="Cnic Number for e.g (XXXXX-XXXXXXX-X)">
+                        <div *ngIf="submitted && f.Cnic.errors" class="invalid-feedback">
+                            <div *ngIf="f.Cnic.errors.pattern">Please provide correct CNIC </div>
+                            <div *ngIf="f.Cnic.errors.maxlength">maximum length is 15 characters</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <button class="form-control col-md-8" mdbBtn block="true" class="btn btn-primary float-right" type="submit">{{btnText}}</button>
+                    </div>
+                </div>     
+            </form>
+        </div>
+        <div class="col-md-6">  
+            <table class="table table-hover">
+                <th>Messr Name</th>
+                <th>Phone No</th>
+                <th>CNIC</th>
+                <th></th>
+                <tr *ngFor="let m of MessrList">
+                    <td [routerLink]="['/messr',m.Id]">{{m.Name}}</td>
+                    <td [routerLink]="['/messr',m.Id]">{{m.PhoneNo}}</td>
+                    <td [routerLink]="['/messr',m.Id]">{{m.Cnic}}</td>
+                    <td *ngIf="router.url == '/messr'">
+                        <i class="far fa-trash-alt fa-lg text-danger"  (click)="onDelete(m.Id)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>      
+</div>
+
+
+        

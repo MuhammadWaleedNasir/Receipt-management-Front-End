@@ -1,0 +1,42 @@
+<div class="jumbtron"> 
+    <h1 class="display-4 text-center">Sectors</h1>
+    <hr/>
+    <div class="row">   
+        <div class="col-md-8">  
+            <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">  
+                    <div class="col-md-12 pr-3 mt-2">
+                        <input type="text" ngModel 
+                                maxlength="10"
+                                [ngClass]="{ 'is-invalid':  submitted && f.SectorNo.errors }" 
+                                formControlName="SectorNo" 
+                                id="SectorNo" 
+                                class="form-control col-md-8 float-right" 
+                                placeholder="Sector No">
+                        <div *ngIf="submitted && f.SectorNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.SectorNo.errors.required">Sector is required</div>
+                            <div *ngIf="f.SectorNo.errors.maxlength">maximum length is ten characters</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <button class="form-control col-md-8" mdbBtn block="true" class="btn btn-primary float-right" type="submit">{{btnText}}</button>
+                    </div>
+                </div>     
+            </form>
+        </div>
+        <div class="col-md-4">  
+            <table class="table table-hover">
+                <th>Sector Name</th>
+                <tr *ngFor="let s of SectorList">
+                    <td [routerLink]="['/sector',s.Value]">{{s.Text}}</td>
+                    <td *ngIf="router.url == '/sector'">
+                        <i class="far fa-trash-alt fa-lg text-danger"  (click)="onDelete(s.Value)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>      
+</div>

@@ -1,0 +1,52 @@
+<div class="jumbtron">
+    <h1 class="display-4 text-center">House Address</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <select id="SectorID" name="SectorID" formControlName="SectorID" (change)="GetHouseList($event.target.value)"
+                            class="form-control col-md-12 float-right">
+                            <option value="" selected disabled hidden>Please select</option>
+                            <option *ngFor="let s of SectorList" [value]="s.Value">{{s.Text}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <input type="text"
+                            maxlength="30"
+                            [ngClass]="{ 'is-invalid':  submitted && f.HouseNo.errors }" 
+                            formControlName="HouseNo"
+                            id="HouseNo" 
+                            class="form-control col-md-12 float-right" 
+                            placeholder="House Address">
+                        <div *ngIf="submitted && f.HouseNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.HouseNo.errors.required">Employee full name is required</div>
+                            <div *ngIf="f.HouseNo.errors.maxlength">maximum length is 30</div>
+                        </div>
+                    </div>
+                </div>             
+
+                <div class="row">
+                    <div class="col-md-12 pr-3 mt-2">
+                        <button class="form-control col-md-12" mdbBtn block="true" class="btn btn-primary float-right"
+                            type="submit">{{btnText}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <table class="table table-hover">
+                <th align-center>Sector</th>
+                <th align-center>House No</th>
+                <tr *ngFor="let h of HouseList">
+                    <td [routerLink]="['/houseAddress',h.HouseId]" align-center>{{h.SectorNo}}</td>
+                    <td [routerLink]="['/houseAddress',h.HouseId]" align-center>{{h.HouseNo}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Portal</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#Receiptsubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">Receipt</a>
+                <ul class="collapse list-unstyled" id="Receiptsubmenu">
+                    <li>
+                        <a [routerLink]="['/receipt']">Generate</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/edit']">Edit</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#Filesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">File</a>
+                <ul class="collapse list-unstyled" id="Filesubmenu">
+                    <li>
+                        <a [routerLink]="['/register']">Entry</a>
+                    </li>
+                    <li>
+                        <a href="#">Diary Number</a>
+                    </li>
+                    <li>
+                        <a href="#">Dispatch Number</a>
+                    </li>
+                    <li>
+                        <a href="#">View Entries</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Stamp Duty</a>
+            </li>
+            <li>
+                <a href="#">Challan No.</a>
+            </li>
+            <li>
+                <a href="#">Expenditures</a>
+            </li>
+
+            <li>
+                <a href="#NewEntrysubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">New Entry</a>
+                <ul class="collapse list-unstyled" id="NewEntrysubmenu">
+                    <li>
+                        <a [routerLink]="['/houseAddress']">New House No</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/messr']">New Messr</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/registermessr']">New Register Messr</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/sector']">New Sector</a>
+                    </li>
+                    <li>
+                        <a href="#Employeesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">Employee</a>
+                        <ul class="collapse list-unstyled" id="Employeesubmenu">
+                            <li>
+                                <a [routerLink]="['/employee']">Create New Employee</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/roles']">Create New Employee Role</a>
+                            </li>               
+                        </ul>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/file']">New File Number</a>
+                    </li>
+                </ul>
+            </li>           
+        </ul>
+    </nav>
+    <div id="content">
+        <app-content-nav></app-content-nav>
+    </div>
+</div>
