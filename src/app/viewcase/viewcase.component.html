@@ -1,9 +1,9 @@
 <div class="jumbtron">
-    <h1 class="display-4 text-center">Part Payment</h1>
+    <h1 class="display-4 text-center">Case History</h1>
     <hr />
     <div class="row">
         <div class="col-md-12">
-            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form class="m-auto col-sm-6" [formGroup]="Form">
                 <div class="row">  
                     <div class="col-md-6 pr-3 mt-2">
                         <ng-select 
@@ -45,56 +45,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
                         <input type="text"
-                            maxlength="12"
-                            formControlName="Balance" 
-                            id="Balance" 
-                            class="form-control col-md-12 float-right" 
-                            placeholder="Total Amount"
-                            prefix="Rs. "
-                            separatorLimit="000"
-                            mask="separator.3"
-                            thousandSeparator=","
-                            readonly>
+                            formControlName="DispatchNo"
+                            [ngClass]="{ 'is-invalid':  submitted && f.DispatchNo.errors }"
+                            placeholder="Dispatch No"
+                            maxlength="10"                                                                                                     
+                            class="form-control col-md-12 float-right">
+                        <div *ngIf="submitted && f.DispatchNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.DispatchNo.errors.required">Diary No. is required</div>
+                        </div>
                     </div>
                     <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input class="form-control"
+                            #datepickerYMD="bsDatepicker"
+                            bsDatepicker
+                            formControlName="DispatchDate"
+                            [ngClass]="{ 'is-invalid':  submitted && f.DispatchDate.errors }"  
+                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue' }">
+                        <div *ngIf="submitted && f.DispatchDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.DispatchDate.errors.required">Diary date is required</div>
+                        </div>                         
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
                         <input type="text"
-                            id="Amount"
-                            name="Amount"
-                            formControlName="Amount"
-                            [ngClass]="{ 'is-invalid':  submitted && f.Amount.errors }"
-                            placeholder="New Payment"
+                            id="RegisterAmount"
+                            name="RegisterAmount"
+                            formControlName="RegisterAmount"
+                            [ngClass]="{ 'is-invalid':  submitted && f.RegisterAmount.errors }"
+                            placeholder="Register Amount"
                             maxlength="12"                                                                                                     
                             class="form-control col-md-12 float-right"
                             prefix="Rs. "
                             separatorLimit="000"
                             mask="separator.3"
                             thousandSeparator=",">
-                        <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
-                            <div *ngIf="f.Amount.errors.maxlength">Max amount would be 99 lacs</div>
+                        <div *ngIf="submitted && f.RegisterAmount.errors" class="invalid-feedback">
+                            <div *ngIf="f.RegisterAmount.errors.maxlength">Max amount would be 99 lacs</div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
-                        <input class="form-control"
-                            #datepickerYMD="bsDatepicker"
-                            bsDatepicker
-                            formControlName="PaymentDate"
-                            [ngClass]="{ 'is-invalid':  submitted && f.PaymentDate.errors }"  
-                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue' }">
-                        <div *ngIf="submitted && f.PaymentDate.errors" class="invalid-feedback">
-                            <div *ngIf="f.PaymentDate.errors.required">Payment date is required</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">                    
+                </div> -->
+                <!-- <div class="row">                    
                     <div class="col-md-12 pr-3 mt-2">
                         <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
                     </div>
-                </div>     
+                </div>      -->
             </form>
         </div>
         <div class="col-md-12 pr-3 mt-2" *ngIf="ReceiptList != ''">
@@ -106,22 +104,28 @@
                 <th align-center>House</th>
                 <th align-center>Messr</th>
                 <th align-center>Description</th>
-                <th align-center>Total</th>
-                <th align-center>Payment Date</th>
-                <th align-center>Payment</th>
-                <th align-center>Balance</th>
-                <tr *ngFor="let rl of ReceiptList">
-                    <td align-center>{{rl.ReceiptDate}}</td>
-                    <td align-center>{{rl.SNo}}</td>
-                    <td align-center>{{rl.FileNo}}</td>
-                    <td align-center>{{rl.SectorNo}}</td>
-                    <td align-center>{{rl.HouseNo}}</td>
-                    <td align-center>{{rl.MessrName}}</td>
-                    <td align-center>{{rl.Description}}</td>
-                    <td align-center>{{rl.TotalAmount}}</td>
-                    <td align-center>{{rl.PaymentDate}}</td>
-                    <td align-center>{{rl.Payment}}</td>
-                    <td align-center>{{rl.Balance}}</td>
+                <th align-center>Register Date</th>
+                <th align-center>Register Messr Name</th>                    
+                <th align-center>Register Amount</th>
+                <th align-center>Diary Date</th>
+                <th align-center>Diary No</th>
+                <th align-center>Dispatch Date</th>
+                <th align-center>Dispatch No</th>
+                <tr *ngFor="let rl of ReceiptList; let i=index">   
+                        <td *ngIf="i<1" align-center>{{rl.ReceiptDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.SNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.FileNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.SectorNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.HouseNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.MessrName}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.Description}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterMessrName}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterAmount}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.DiaryDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.DiaryNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.DispatchDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.DispatchNo}}</td>
                     <!-- <td *ngIf="router.url == '/employee'">
                         <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(e.EmployeeId)"></i>
                     </td> -->

@@ -11,7 +11,7 @@
                         <a [routerLink]="['/receipt']">Generate</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/edit']">Edit</a>
+                        <a [routerLink]="['/edit']">Part payment</a>
                     </li>
                 </ul>
             </li>
@@ -19,27 +19,30 @@
                 <a href="#Filesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">File</a>
                 <ul class="collapse list-unstyled" id="Filesubmenu">
                     <li>
-                        <a [routerLink]="['/register']">Entry</a>
+                        <a [routerLink]="['/register']">Case Detail</a>
                     </li>
                     <li>
-                        <a href="#">Diary Number</a>
+                        <a [routerLink]="['/diary']">Diary Number</a>
                     </li>
                     <li>
-                        <a href="#">Dispatch Number</a>
-                    </li>
-                    <li>
-                        <a href="#">View Entries</a>
-                    </li>
+                        <a [routerLink]="['/dispatch']">Dispatch Number</a>
+                    </li>                    
                 </ul>
             </li>
             <li>
-                <a href="#">Stamp Duty</a>
+                <a [routerLink]="['/viewcase']">Case History</a>
             </li>
             <li>
-                <a href="#">Challan No.</a>
+                <a [routerLink]="['/stampduty']">Stamp Duty</a>
             </li>
             <li>
-                <a href="#">Expenditures</a>
+                <a [routerLink]="['/challan']">Challan Amount</a>
+            </li>
+            <li>
+                <a [routerLink]="['/fileexpenditure']">File Expenditure</a>
+            </li>
+            <li>
+                <a [routerLink]="['/totalexpenditures']">Total Expenditures</a>
             </li>
 
             <li>

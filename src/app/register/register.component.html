@@ -1,5 +1,5 @@
 <div class="jumbtron">
-        <h1 class="display-4 text-center">Register Entry</h1>
+        <h1 class="display-4 text-center">Case Detail</h1>
         <hr />
         <div class="row">
             <div class="col-md-12">
@@ -102,7 +102,7 @@
                     </div>     
                 </form>
             </div>
-            <div class="col-md-12 pr-3 mt-2">
+            <div class="col-md-12 pr-3 mt-2" *ngIf="ReceiptList != ''">
                 <table class="table table-hover">
                     <th align-center>Receipt Date</th>
                     <th align-center>Serial</th>
@@ -114,22 +114,22 @@
                     <th align-center>Register Date</th>
                     <th align-center>Register Messr Name</th>                    
                     <th align-center>Register Amount</th>
-                    <tr *ngFor="let rl of ReceiptList">
-                        <td align-center>{{rl.ReceiptDate}}</td>
-                        <td align-center>{{rl.SNo}}</td>
-                        <td align-center>{{rl.FileNo}}</td>
-                        <td align-center>{{rl.SectorNo}}</td>
-                        <td align-center>{{rl.HouseNo}}</td>
-                        <td align-center>{{rl.MessrName}}</td>
-                        <td align-center>{{rl.Description}}</td>
-                        <td align-center>{{rl.RegisterDate}}</td>
-                        <td align-center>{{rl.RegisterMessrName}}</td>
-                        <td align-center>{{rl.RegisterAmount}}</td>
+                    <tr *ngFor="let rl of ReceiptList; let i=index">
+                        <td *ngIf="i<1" align-center>{{rl.ReceiptDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.SNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.FileNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.SectorNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.HouseNo}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.MessrName}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.Description}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterDate}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterMessrName}}</td>
+                        <td *ngIf="i<1" align-center>{{rl.RegisterAmount}}</td>
                         <!-- <td *ngIf="router.url == '/employee'">
                             <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(e.EmployeeId)"></i>
                         </td> -->
                     </tr>
                 </table>
-            </div>
+            </div>        
         </div>
     </div>

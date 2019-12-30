@@ -22,6 +22,11 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
             $(this).toggleClass('active');
+            if($('#sidebarCollapse').hasClass('active')){
+              $(".receiptTable").css('max-width','100%');
+            }else{
+              $(".receiptTable").css('max-width','1024px');
+            }
         });
     });
   </script>

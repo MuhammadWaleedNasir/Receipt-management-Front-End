@@ -10,6 +10,12 @@ import { HouseAddressComponent  } from './house-address/house-address.component'
 import { EditReceiptComponent } from './edit-receipt/edit-receipt.component';
 import { RegisterMessrComponent } from './register-messr/register-messr.component';
 import { RegisterComponent } from './register/register.component';
+import { DiarynoComponent } from './diaryno/diaryno.component';
+import { DispatchnoComponent } from './dispatchno/dispatchno.component';
+import { ViewcaseComponent } from './viewcase/viewcase.component';
+import { StampdutyComponent } from './stampduty/stampduty.component';
+import { ChallanComponent } from './challan/challan.component';
+import { FileexpenditureComponent } from './fileexpenditure/fileexpenditure.component';
 
 
 const routes: Routes = [
@@ -27,7 +33,13 @@ const routes: Routes = [
   { path: 'edit',component:EditReceiptComponent},
   { path: 'registermessr',component: RegisterMessrComponent},
   { path: 'registermessr/:id',component: RegisterMessrComponent},
-  { path: 'register',component:RegisterComponent}
+  { path: 'register',component:RegisterComponent},
+  { path: 'diary',component:DiarynoComponent},
+  { path: 'dispatch',component:DispatchnoComponent},
+  { path: 'viewcase',component:ViewcaseComponent},
+  { path: 'stampduty',component:StampdutyComponent},
+  { path: 'challan',component:ChallanComponent},
+  { path: 'fileexpenditure',component:FileexpenditureComponent}
 ];
 
 

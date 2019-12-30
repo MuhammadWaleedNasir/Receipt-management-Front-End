@@ -25,7 +25,7 @@
                 <div class="row">  
                     <div class="col-md-12 pr-3 mt-2">
                         <input type="text" ngModel 
-                            pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}"
+                            pattern="03[0-9]{2}[0-9]{7}"
                             maxlength="11"
                             [ngClass]="{ 'is-invalid':  submitted && f.PhoneNo.errors }" 
                             formControlName="PhoneNo" 
@@ -36,23 +36,6 @@
                             <div *ngIf="f.PhoneNo.errors.required">Phone No is required</div>
                             <div *ngIf="f.PhoneNo.errors.pattern">Please provide correct phone No</div>
                             <div *ngIf="f.PhoneNo.errors.maxlength">maximum length is 11 characters</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">  
-                    <div class="col-md-12 pr-3 mt-2">
-                        <input type="text" ngModel 
-                            pattern="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$"
-                            maxlength="15"
-                            [ngClass]="{ 'is-invalid':  submitted && f.Cnic.errors }" 
-                            formControlName="Cnic" 
-                            id="Cnic" 
-                            class="form-control col-md-12 float-right" 
-                            placeholder="Cnic Number for e.g (XXXXX-XXXXXXX-X)">
-                        <div *ngIf="submitted && f.Cnic.errors" class="invalid-feedback">
-                            <div *ngIf="f.Cnic.errors.pattern">Please provide correct CNIC </div>
-                            <div *ngIf="f.Cnic.errors.maxlength">maximum length is 15 characters</div>
                         </div>
                     </div>
                 </div>
@@ -68,12 +51,10 @@
             <table class="table table-hover">
                 <th>Messr Name</th>
                 <th>Phone No</th>
-                <th>CNIC</th>
                 <th></th>
                 <tr *ngFor="let m of MessrList">
                     <td [routerLink]="['/messr',m.Id]">{{m.Name}}</td>
                     <td [routerLink]="['/messr',m.Id]">{{m.PhoneNo}}</td>
-                    <td [routerLink]="['/messr',m.Id]">{{m.Cnic}}</td>
                     <td *ngIf="router.url == '/messr'">
                         <i class="far fa-trash-alt fa-lg text-danger"  (click)="onDelete(m.Id)"></i>
                     </td>

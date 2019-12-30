@@ -30,6 +30,13 @@ import { GenerateReceiptService } from './shared/generate-receipt.service';
 import { EditReceiptComponent } from './edit-receipt/edit-receipt.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterMessrComponent } from './register-messr/register-messr.component';
+import { DiarynoComponent } from './diaryno/diaryno.component';
+import { DispatchnoComponent } from './dispatchno/dispatchno.component';
+import { ViewcaseComponent } from './viewcase/viewcase.component';
+import { StampdutyComponent } from './stampduty/stampduty.component';
+import { ChallanComponent } from './challan/challan.component';
+import { FileexpenditureComponent } from './fileexpenditure/fileexpenditure.component';
+import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditures.component';
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -48,7 +55,14 @@ import { RegisterMessrComponent } from './register-messr/register-messr.componen
     HouseAddressComponent,
     EditReceiptComponent,
     RegisterComponent,
-    RegisterMessrComponent
+    RegisterMessrComponent,
+    DiarynoComponent,
+    DispatchnoComponent,
+    ViewcaseComponent,
+    StampdutyComponent,
+    ChallanComponent,
+    FileexpenditureComponent,
+    TotalexpendituresComponent
   ],
   imports: [
     BrowserModule,

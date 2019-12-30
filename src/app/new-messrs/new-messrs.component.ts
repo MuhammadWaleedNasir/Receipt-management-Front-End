@@ -36,8 +36,7 @@ export class NewMessrsComponent implements OnInit {
     this.Form = this.fb.group({
       Id : [null],
       Name : ['', Validators.required],
-      PhoneNo : ['',Validators.required],
-      Cnic : ['']
+      PhoneNo : ['',Validators.required]
     });   
   }
 
@@ -68,8 +67,7 @@ export class NewMessrsComponent implements OnInit {
               this.Form = this.fb.group({
                 Id : [filtered.Id],
                 Name : [filtered.Name],
-                PhoneNo : [filtered.PhoneNo],
-                Cnic : [filtered.Cnic]
+                PhoneNo : [filtered.PhoneNo]
               });
             }
           }
@@ -95,6 +93,7 @@ export class NewMessrsComponent implements OnInit {
           else{
             this.toastr.success('Messr registered successfully','Success');
             this.initialiseInvites();
+            this.GetMessrs();
           }
         },
         err => { 

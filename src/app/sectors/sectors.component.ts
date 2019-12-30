@@ -70,7 +70,7 @@ export class SectorsComponent implements OnInit {
         }
       },
       error => {
-        this.toastr.error('Failed to load Sectors','Sector');
+        this.toastr.error('Failed to load Sectors','Error');
       });
   }
 
@@ -85,16 +85,16 @@ export class SectorsComponent implements OnInit {
         res => {
           if(res == 0)
           {
-            this.toastr.warning('Sector already exists', 'Sector');
+            this.toastr.warning('Sector already exists', 'Warning');
           }
           else
           {
-            this.toastr.success('Sector Added successfully', 'Sector');
+            this.toastr.success('Sector Added successfully', 'Success');
             this.initialiseInvites();
           }
         },
         err => {
-          this.toastr.error('Failed to create new sector','Sector');
+          this.toastr.error('Failed to create new sector','Error');
         }
       );
     }
@@ -103,30 +103,36 @@ export class SectorsComponent implements OnInit {
         res => {
           if(res == 0)
           {
-            this.toastr.warning('Sector already exists', 'Sector');
+            this.toastr.warning('Sector already exists', 'Warning');
           }
           else
           {
-            this.toastr.success('Sector Updated successfully', 'Sector');
+            this.toastr.success('Sector Updated successfully', 'Success');
             this.router.navigate(['/sector']);
           }          
         },
         err => {
-          this.toastr.error('Failed to update sector','Sector');
+          this.toastr.error('Failed to update sector','Error');
         }
       );
     }
   }
 
   onDelete(Id: number) {
-    if (confirm('Are you sure to delete this record ? ')) {
+    if (confirm('All house address mapped to the selected sector will be deleted. Are you sure you want to delete ? ')) {
       this.service.DeleteSector(Id).subscribe(
         res => {
-          this.GetSectors();
-          this.toastr.warning('Deleted Successfully', 'Sector');
+          if(res == null)
+          {
+            this.toastr.warning('Sector is mapped to the house address', 'Warning');
+          }
+          else{
+            this.GetSectors();
+            this.toastr.success('Deleted Successfully', 'Success');
+          }         
         },
         err => {
-          this.toastr.error('Failed to delete sector','Sector');
+          this.toastr.error('Failed to delete sector','Error');
         })
     }
   }
