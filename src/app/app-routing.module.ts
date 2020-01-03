@@ -16,6 +16,7 @@ import { ViewcaseComponent } from './viewcase/viewcase.component';
 import { StampdutyComponent } from './stampduty/stampduty.component';
 import { ChallanComponent } from './challan/challan.component';
 import { FileexpenditureComponent } from './fileexpenditure/fileexpenditure.component';
+import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditures.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: 'viewcase',component:ViewcaseComponent},
   { path: 'stampduty',component:StampdutyComponent},
   { path: 'challan',component:ChallanComponent},
-  { path: 'fileexpenditure',component:FileexpenditureComponent}
+  { path: 'fileexpenditure',component:FileexpenditureComponent},
+  { path : 'totalexpenditure',component:TotalexpendituresComponent}
 ];
 
 

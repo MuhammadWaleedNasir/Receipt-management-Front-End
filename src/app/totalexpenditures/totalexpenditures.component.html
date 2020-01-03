@@ -1,1 +1,141 @@
-<p>totalexpenditures works!</p>
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Total Case Expenditure</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+                <div class="row">  
+                    <div class="col-md-6 pr-3 mt-2">
+                        <ng-select 
+                            bindLabel="name"
+                            formControlName="SectorID"
+                            placeholder="Please select sector"
+                            class="custom"
+                            [ngClass]="{ 'is-invalid':  submitted && f.SectorID.errors }"
+                            [selectableGroupAsModel]="false"
+                            [searchable]="true" 
+                            [clearable]="true"
+                            [(ngModel)]="selected"
+                            (change)="GetHouseList($event)">
+                            <ng-option *ngFor="let s of SectorList" [value]="s.Value" [disabled]="s.disabled">
+                                {{s.Text}}
+                            </ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.SectorID.errors" class="invalid-feedback">
+                            <div *ngIf="f.SectorID.errors.required">Sector No. is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pr-3 mt-2">
+                        <ng-select 
+                            bindLabel="name"
+                            formControlName="HouseID"
+                            placeholder="Please select house N.o" 
+                            class="custom"
+                            [ngClass]="{ 'is-invalid':  submitted && f.HouseID.errors }"
+                            [selectableGroupAsModel]="false"
+                            [searchable]="true" 
+                            [clearable]="true"
+                            (change)="GetReceiptList($event)">
+                            <ng-option *ngFor="let h of HouseList" [value]="h.HouseId" [disabled]="h.disabled">
+                                {{h.HouseNo}}
+                            </ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.HouseID.errors" class="invalid-feedback">
+                            <div *ngIf="f.HouseID.errors.required">House No. is required</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input type="text"
+                            id="FileExpenditure"
+                            name="FileExpenditure"
+                            formControlName="FileExpenditure"
+                            [ngClass]="{ 'is-invalid':  submitted && f.FileExpenditure.errors }"
+                            placeholder="File Expenditure"
+                            maxlength="12"                                                                                                     
+                            class="form-control col-md-12 float-right"
+                            prefix="Rs. "
+                            separatorLimit="000"
+                            mask="separator.3"
+                            thousandSeparator=",">
+                        <div *ngIf="submitted && f.FileExpenditure.errors" class="invalid-feedback">
+                            <div *ngIf="f.FileExpenditure.errors.maxlength">Max amount would be 99 lacs</div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
+                        <input type="text"
+                            id="RegisterAmount"
+                            name="RegisterAmount"
+                            formControlName="RegisterAmount"
+                            [ngClass]="{ 'is-invalid':  submitted && f.RegisterAmount.errors }"
+                            placeholder="Register Amount"
+                            maxlength="12"                                                                                                     
+                            class="form-control col-md-12 float-right"
+                            prefix="Rs. "
+                            separatorLimit="000"
+                            mask="separator.3"
+                            thousandSeparator=",">
+                        <div *ngIf="submitted && f.RegisterAmount.errors" class="invalid-feedback">
+                            <div *ngIf="f.RegisterAmount.errors.maxlength">Max amount would be 99 lacs</div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="row">                    
+                    <div class="col-md-12 pr-3 mt-2">
+                        <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
+                    </div>
+                </div>      -->
+            </form>
+        </div>
+
+        
+        <div class="col-md-12 pr-3 mt-2" *ngIf="ReceiptList != ''">
+            <table class="table table-hover table-responsive receiptTable">
+                <th align-center>Receipt Date</th>
+                <th align-center>Serial</th>
+                <th align-center>File</th>
+                <th align-center>Sector</th>
+                <th align-center>House</th>
+                <th align-center>Messr</th>
+                <th align-center>Description</th>               
+                <th align-center>Total Amount</th>
+                <th align-center>Payment Date</th>
+                <th align-center>Payment</th>
+                <th align-center>Balance</th>
+                <th align-center>Register Amount</th>
+                <th align-center>StampDuty Amount</th>
+                <th align-center>Challan Amount</th>
+                <th align-center>File Expenditures</th>
+                <th align-center>Total Expenditure</th>
+                <th align-center>Profit</th>
+                <tr *ngFor="let rl of ReceiptList; let i=index">   
+                        <td align-center>{{rl.ReceiptDate}}</td>
+                        <td align-center>{{rl.SNo}}</td>
+                        <td align-center>{{rl.FileNo}}</td>
+                        <td align-center>{{rl.SectorNo}}</td>
+                        <td align-center>{{rl.HouseNo}}</td>
+                        <td align-center>{{rl.MessrName}}</td>
+                        <td align-center>{{rl.Description}}</td>
+                        <td align-center>{{rl.TotalAmount}}</td>
+                        <td align-center>{{rl.PaymentDate}}</td>
+                        <td align-center>{{rl.Payment}}</td>
+                        <td align-center>{{rl.Balance}}</td>
+                        <td align-center>{{rl.RegisterAmount}}</td>
+                        <td align-center>{{rl.StampDutyAmount}}</td>
+                        <td align-center>{{rl.ChallanAmount}}</td>
+                        <td align-center>{{rl.FileExpenditure}}</td>
+                        <td align-center>{{rl.TotalExpenditure}}</td>
+                        <td align-center>{{rl.TotalAmount - rl.TotalExpenditure}}</td>
+                    <!-- <td *ngIf="router.url == '/employee'">
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(e.EmployeeId)"></i>
+                    </td> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
