@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../shared/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content-nav',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service : AuthServiceService,
+              private router: Router) { }
 
   ngOnInit() {
+    
   }
 
+  logout(){
+    localStorage.removeItem('access-token');
+    this.service.isLoggedInActive(false);
+    this.router.navigate(['/login']);
+  }
 }

@@ -141,7 +141,6 @@ export class CreateEmployeeComponent implements OnInit {
       this.service.DeleteEmployee(Id).subscribe(
         res => {
           this.toastr.success('Employee deleted successfully', 'Employee');
-          //this.router.navigate(['/employee']);
           this.GetRole();
           this.GetEmployee();   
         },
@@ -152,41 +151,3 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
 }
-
-// if(this.urlId == undefined)
-//     {
-//       this.service.PostSector(this.Form.value).subscribe(
-//         res => {
-//           if(res == 0)
-//           {
-//             this.toastr.warning('Sector already exists', 'Sector');
-//           }
-//           else
-//           {
-//             this.toastr.success('Sector Added successfully', 'Sector');
-//             this.initialiseInvites();
-//           }
-//         },
-//         err => {
-//           this.toastr.error('Failed to create new sector','Sector');
-//         }
-//       );
-//     }
-//     else{
-//       this.service.UpdateSector(this.Form.value).subscribe(
-//         res => {
-//           if(res == 0)
-//           {
-//             this.toastr.warning('Sector already exists', 'Sector');
-//           }
-//           else
-//           {
-//             this.toastr.success('Sector Updated successfully', 'Sector');
-//             this.router.navigate(['/sector']);
-//           }          
-//         },
-//         err => {
-//           this.toastr.error('Failed to update sector','Sector');
-//         }
-//       );
-//     }

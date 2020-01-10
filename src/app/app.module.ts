@@ -7,7 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-//import { RouterModule } from '@angular/router';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,8 +37,13 @@ import { StampdutyComponent } from './stampduty/stampduty.component';
 import { ChallanComponent } from './challan/challan.component';
 import { FileexpenditureComponent } from './fileexpenditure/fileexpenditure.component';
 import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditures.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './shared/security/auth.guard';
+import { AuthServiceService } from './shared/auth-service.service';
 
-// export const options: Partial<IConfig> | (() => Partial<IConfig>);
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [
@@ -62,7 +67,8 @@ import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditure
     StampdutyComponent,
     ChallanComponent,
     FileexpenditureComponent,
-    TotalexpendituresComponent
+    TotalexpendituresComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -74,14 +80,21 @@ import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditure
     NgSelectModule,
     NgxMaskModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   providers: [SectorsService,
               NewMessrsServiceService,
               EmployeeroleServiceService,
               NewfilenumberServiceService,
               HouseaddressService,
-              GenerateReceiptService],
+              GenerateReceiptService,
+              AuthServiceService,
+              AuthGuard],
               
   bootstrap: [AppComponent]
 })

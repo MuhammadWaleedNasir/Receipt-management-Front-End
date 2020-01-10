@@ -1,11 +1,12 @@
 <div class="wrapper">
-    <nav id="sidebar">
+    <nav id="sidebar" *ngIf="isLoggedIn$ | async">
         <div class="sidebar-header">
             <h4>Siddiqui Associates</h4>
         </div>
         <ul class="list-unstyled components">
             <li>
-                <a href="#Receiptsubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">Receipt</a>
+                <a href="#Receiptsubmenu" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle active">Receipt</a>
                 <ul class="collapse list-unstyled" id="Receiptsubmenu">
                     <li>
                         <a [routerLink]="['/receipt']">Generate</a>
@@ -16,7 +17,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#Filesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">File</a>
+                <a href="#Filesubmenu" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle active">File</a>
                 <ul class="collapse list-unstyled" id="Filesubmenu">
                     <li>
                         <a [routerLink]="['/register']">Case Detail</a>
@@ -26,7 +28,7 @@
                     </li>
                     <li>
                         <a [routerLink]="['/dispatch']">Dispatch Number</a>
-                    </li>                    
+                    </li>
                 </ul>
             </li>
             <li>
@@ -46,7 +48,8 @@
             </li>
 
             <li>
-                <a href="#NewEntrysubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">New Entry</a>
+                <a href="#NewEntrysubmenu" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle active">New Entry</a>
                 <ul class="collapse list-unstyled" id="NewEntrysubmenu">
                     <li>
                         <a [routerLink]="['/houseAddress']">New House No</a>
@@ -61,24 +64,30 @@
                         <a [routerLink]="['/sector']">New Sector</a>
                     </li>
                     <li>
-                        <a href="#Employeesubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle active">Employee</a>
+                        <a href="#Employeesubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle active">Employee</a>
                         <ul class="collapse list-unstyled" id="Employeesubmenu">
                             <li>
                                 <a [routerLink]="['/employee']">Create New Employee</a>
                             </li>
                             <li>
                                 <a [routerLink]="['/roles']">Create New Employee Role</a>
-                            </li>               
+                            </li>
                         </ul>
                     </li>
                     <li>
                         <a [routerLink]="['/file']">New File Number</a>
                     </li>
                 </ul>
-            </li>           
+            </li>
         </ul>
     </nav>
     <div id="content">
-        <app-content-nav></app-content-nav>
+        <app-content-nav *ngIf="isLoggedIn$ | async"></app-content-nav>
+
+        <div class="container col-12">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
+
