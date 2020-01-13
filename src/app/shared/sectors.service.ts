@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SectorsService {
-  readonly rootUrl = 'http://localhost:56315/api/file';
+  readonly rootUrl = 'https://localhost:44355/api/file';
+  // https://localhost:44355/swagger/index.html
   constructor(private http:HttpClient) { }
 
   GetSectors () {

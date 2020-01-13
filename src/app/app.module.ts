@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule,Validators } from '@angular/forms'
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -40,6 +40,7 @@ import { TotalexpendituresComponent } from './totalexpenditures/totalexpenditure
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/security/auth.guard';
 import { AuthServiceService } from './shared/auth-service.service';
+import { AuthInterceptor } from './shared/security/auth.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -87,14 +88,21 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [SectorsService,
-              NewMessrsServiceService,
-              EmployeeroleServiceService,
-              NewfilenumberServiceService,
-              HouseaddressService,
-              GenerateReceiptService,
-              AuthServiceService,
-              AuthGuard],
+  providers: [
+    SectorsService,
+    NewMessrsServiceService,
+    EmployeeroleServiceService,
+    NewfilenumberServiceService,
+    HouseaddressService,
+    GenerateReceiptService,
+    AuthServiceService,
+    AuthGuard,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true
+  }
+],
               
   bootstrap: [AppComponent]
 })

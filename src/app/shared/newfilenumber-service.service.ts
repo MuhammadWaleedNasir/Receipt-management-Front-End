@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class NewfilenumberServiceService {
-  readonly rootUrl = 'http://localhost:56315/api/file';
+  readonly rootUrl = 'https://localhost:44355/api/file';
   constructor(private http:HttpClient) { }
 
   GetFileNumber() {

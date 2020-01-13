@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     .subscribe((response: any) => {
       if (response && response.token) {
         this.service.isLoggedInActive(true);
-        localStorage.setItem('access-token', JSON.stringify(response.token));
+        localStorage.setItem('access-token', response.token);
         //this.service.isNavActive;
         // this.router.navigate(['/receipt']);
         this.refresh('/receipt', true);

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class NewMessrsServiceService {
-  readonly rootUrl = 'http://localhost:56315/api/receipt';
+  readonly rootUrl = 'https://localhost:44355/api/receipt';
   constructor(private http:HttpClient) { }
 
   GetMessrs () {

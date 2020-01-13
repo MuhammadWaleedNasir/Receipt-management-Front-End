@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class EmployeeroleServiceService {
-  readonly rootUrl = 'http://localhost:56315/api/employee';
+  readonly rootUrl = 'https://localhost:44355/api/employee';
   constructor(private http:HttpClient) { }
 
   GetRoles() {
