@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  readonly rootUrl = 'https://localhost:44355/api/Auth';
+  readonly rootUrl = environment.baseUrl + 'Auth';
   constructor(private http:HttpClient) { }
 
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

@@ -3,7 +3,7 @@
     <hr/>
     <div class="row">   
         <div class="col-md-8">  
-            <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="row">  
                     <div class="col-md-12 pr-3 mt-2">
                         <input type="text" ngModel 
@@ -32,6 +32,7 @@
         <div class="col-md-4">  
             <table class="table table-hover">
                 <th>File Number</th>
+                <th></th>
                 <tr *ngFor="let f of FileList">
                     <td>{{f.Text}}</td>
                     <td>
@@ -42,39 +43,3 @@
         </div>
     </div>      
 </div>
-    
-<!-- <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
-    <div class="row">
-        <div class="col-md-8">    
-            <select id="FileList" name="FileList" class="form-control col-md-6 float-right">
-                <option value="0">--All--</option>
-                <option *ngFor="let f of FileList" [value]="f.Value" >{{f.Text}}</option>
-            </select>
-        </div>
-    </div>      
-    <div class="row">  
-        <div class="col-md-8 pr-3 mt-2">
-            <input type="text" ngModel 
-                    pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$"
-                    maxlength="4"
-                    [ngClass]="{ 'is-invalid':  submitted && f.FileNo.errors }" 
-                    formControlName="FileNo" 
-                    id="FileNo" 
-                    class="form-control col-md-6 float-right" 
-                    placeholder="File Number">
-            <div *ngIf="submitted && f.FileNo.errors" class="invalid-feedback">
-                <div *ngIf="f.FileNo.errors.required">File number is required</div>
-                <div *ngIf="f.FileNo.errors.pattern">invalid pattern</div>
-                <div *ngIf="f.FileNo.errors.maxlength">maximum length is four characters</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-8 pr-3 mt-2">
-            <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
-        </div>
-    </div>     
-</form>
-[routerLink]="['/sector',f.Value]"
-     -->

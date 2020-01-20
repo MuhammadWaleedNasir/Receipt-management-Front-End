@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HouseaddressService {
-  readonly rootUrl = 'https://localhost:44355/api/file';
+  readonly rootUrl = environment.baseUrl + 'file';
   constructor(private http: HttpClient) { }
 
   GetHouseNo(id : any) {

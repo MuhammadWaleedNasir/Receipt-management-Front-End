@@ -15,6 +15,8 @@ export class NewfilenumberComponent implements OnInit {
   constructor(private service:NewfilenumberServiceService,
               private fb:FormBuilder,
               private toastr: ToastrService) { }
+  
+  get f() { return this.Form.controls; }
 
   ngOnInit() {
     this.GetFiles();
@@ -23,6 +25,7 @@ export class NewfilenumberComponent implements OnInit {
       FileNo : ['', Validators.required]
     });
   }
+  
   GetFiles() {
     this.service.GetFileNumber().subscribe(
       result => {
@@ -42,8 +45,6 @@ export class NewfilenumberComponent implements OnInit {
         res => {    
           this.toastr.success('file created successfully','File');
           this.GetFiles();
-          //this.resetForm(form);
-          //this.service.refreshList(); 
         },
         err => { 
           this.toastr.error('Failed to create new file','File');

@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <nav id="sidebar" *ngIf="isLoggedIn$ | async">
+    <nav id="sidebar" [ngClass]="didVote ? 'active' : ''" *ngIf="isLoggedIn$ | async">
         <div class="sidebar-header">
             <h4>Siddiqui Associates</h4>
         </div>
@@ -83,7 +83,7 @@
         </ul>
     </nav>
     <div id="content">
-        <app-content-nav *ngIf="isLoggedIn$ | async"></app-content-nav>
+        <app-content-nav *ngIf="isLoggedIn$ | async" (paerntFunc)="emitterPaerntFunc($event);"></app-content-nav>
 
         <div class="container col-12">
             <router-outlet></router-outlet>

@@ -38,11 +38,9 @@ export class GenerateReceiptComponent implements OnInit {
   ngOnInit() {
     this.initialiseInvites();
     this.StartMethod();
-
   }
 
-  initialiseInvites() {
-     
+  initialiseInvites() {   
     this.Form = this.fb.group({
       SNo: ['', Validators.required],
       FileID: ['', Validators.required],
@@ -136,8 +134,6 @@ export class GenerateReceiptComponent implements OnInit {
         }
         else {
           this.toastr.success('Receipt generated successfully', 'Receipt');
-          debugger;
-          // this.router.navigate(['/receipt']);
           this.Form.reset();
           this.initialiseInvites();
           this.StartMethod();
@@ -147,24 +143,6 @@ export class GenerateReceiptComponent implements OnInit {
         this.toastr.error('Failed to generate new receipt', 'Receipt');
       }
     );
-
-    // this.houseservice.UpdateHouseNo(this.Form.value).subscribe(
-    //   res => {
-    //     if(res == 0)
-    //     {
-    //       this.toastr.warning('House No already exists', 'House Address');
-    //     }
-    //     else
-    //     {
-    //       this.toastr.success('House No Updated successfully', 'House Address');
-    //       this.router.navigate(['/houseAddress']);
-    //     }          
-    //   },
-    //   err => {
-    //     this.toastr.error('Failed to update House No','House Address');
-    //   }
-    // );
-
   }
 
 }

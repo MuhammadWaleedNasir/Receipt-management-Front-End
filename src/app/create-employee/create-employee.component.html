@@ -3,7 +3,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-12 pr-3 mt-2">
                         <input type="text" ngModel pattern="[a-zA-Z ]*" 
@@ -82,8 +82,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-8">
-            <table class="table table-hover">
+        <div class="col-md-8 tbl-class">
+            <table class="table table-hover table-responsive">
                 <th align-center>Full Name</th>
                 <th align-center>Username</th>
                 <th align-center>Phone No</th>
@@ -104,86 +104,3 @@
         </div>
     </div>
 </div>
-<!-- <form class="border border-light p-5" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
-    <div class="row">  
-        <div class="col-md-8" style="min-width: 40px;">
-            <input type="text" ngModel 
-                    pattern="[a-zA-Z ]*"
-                    maxlength="30"
-                    [ngClass]="{ 'is-invalid':  submitted && f.FullName.errors }" 
-                    formControlName="FullName" 
-                    id="FullName" 
-                    class="form-control col-md-6 float-right" 
-                    placeholder="Employee Full Name">
-            <div *ngIf="submitted && f.FullName.errors" class="invalid-feedback">
-                <div *ngIf="f.FullName.errors.required">Employee full name is required</div>
-                <div *ngIf="f.FullName.errors.pattern">Only alphabets are required</div>
-                <div *ngIf="f.FullName.errors.maxlength">maximum length is 30</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">  
-        <div class="col-md-8 pr-3 mt-2">
-            <input type="text" ngModel 
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    maxlength="20"
-                    [ngClass]="{ 'is-invalid':  submitted && f.UserName.errors }" 
-                    formControlName="UserName" 
-                    id="UserName" 
-                    class="form-control col-md-6 float-right" 
-                    placeholder="Employee username">
-            <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
-                <div *ngIf="f.UserName.errors.required">Employee username is required</div>
-                <div *ngIf="f.UserName.errors.pattern">Capital,small & numbers can include</div>
-                <div *ngIf="f.UserName.errors.maxlength">maximum length is 20</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">  
-            <div class="col-md-8 pr-3 mt-2">
-                <input type="text" ngModel 
-                        pattern="^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$"
-                        maxlength="20"
-                        [ngClass]="{ 'is-invalid':  submitted && f.PhoneNo.errors }" 
-                        formControlName="PhoneNo" 
-                        id="PhoneNo" 
-                        class="form-control col-md-6 float-right" 
-                        placeholder="Contact No">
-                <div *ngIf="submitted && f.PhoneNo.errors" class="invalid-feedback">
-                    <div *ngIf="f.PhoneNo.errors.required">Employee username is required</div>
-                    <div *ngIf="f.PhoneNo.errors.pattern">Capital,small & numbers can include</div>
-                    <div *ngIf="f.PhoneNo.errors.maxlength">maximum length is 20</div>
-                </div>
-            </div>
-        </div>
-    <div class="row"> 
-        <div class="col-md-8 pr-3 mt-2">
-            <input type="password" ngModel 
-                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
-                    maxlength="30"
-                    [ngClass]="{ 'is-invalid':  submitted && f.Password.errors }" 
-                    formControlName="Password" 
-                    id="Password" 
-                    class="form-control col-md-6 float-right" 
-                    placeholder="Password">
-            <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
-                <div *ngIf="f.Password.errors.required">Password is required</div>
-                <div *ngIf="f.Password.errors.pattern">Password must include upercase,lowercase & special characters</div>
-                <div *ngIf="f.Password.errors.maxlength">maximum length is 30</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 pr-3 mt-2">    
-            <select id="RoleID" name="RoleID" formControlName="RoleID" class="form-control col-md-6 float-right">
-                <option *ngFor="let r of RoleList" [value]="r.Value" >{{r.Text}}</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8 pr-3 mt-2">
-            <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
-        </div>
-    </div>     
-</form> -->

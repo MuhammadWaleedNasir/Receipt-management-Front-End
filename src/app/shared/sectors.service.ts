@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectorsService {
-  readonly rootUrl = 'https://localhost:44355/api/file';
-  // https://localhost:44355/swagger/index.html
+  readonly rootUrl = environment.baseUrl + 'file';
+
   constructor(private http:HttpClient) { }
 
   GetSectors () {

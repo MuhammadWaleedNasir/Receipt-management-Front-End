@@ -3,7 +3,7 @@
     <hr />
     <div class="row">
         <div class="col-md-12">
-            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="row">  
                     <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
                         <input type="text"                 
@@ -45,7 +45,6 @@
                             [selectableGroupAsModel]="false"
                             [searchable]="true" 
                             [clearable]="true"
-                            [(ngModel)]="selected"
                             (change)="GetHouseList($event)">
                             <ng-option *ngFor="let s of SectorList" [value]="s.Value" [disabled]="s.disabled">
                                 {{s.Text}}

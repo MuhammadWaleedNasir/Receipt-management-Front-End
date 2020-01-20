@@ -15,7 +15,6 @@ import { GenerateReceiptComponent } from './generate-receipt/generate-receipt.co
 import { EmployeeroleComponent } from './employeerole/employeerole.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentNavComponent } from './content-nav/content-nav.component';
-import { ContentComponent } from './content/content.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { NewfilenumberComponent } from './newfilenumber/newfilenumber.component';
 import { NewMessrsComponent } from './new-messrs/new-messrs.component';
@@ -53,7 +52,6 @@ export function tokenGetter() {
     EmployeeroleComponent,
     SidenavComponent,
     ContentNavComponent,
-    ContentComponent,
     CreateEmployeeComponent,
     NewfilenumberComponent,
     NewMessrsComponent,

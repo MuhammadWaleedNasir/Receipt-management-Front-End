@@ -3,7 +3,7 @@
     <hr />
     <div class="row">
         <div class="col-md-12">
-            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form class="m-auto col-sm-6" [formGroup]="Form">
                 <div class="row">  
                     <div class="col-md-6 pr-3 mt-2">
                         <ng-select 
@@ -14,8 +14,7 @@
                             [ngClass]="{ 'is-invalid':  submitted && f.SectorID.errors }"
                             [selectableGroupAsModel]="false"
                             [searchable]="true" 
-                            [clearable]="true"
-                            [(ngModel)]="selected"
+                            [clearable]="true"                            
                             (change)="GetHouseList($event)">
                             <ng-option *ngFor="let s of SectorList" [value]="s.Value" [disabled]="s.disabled">
                                 {{s.Text}}
@@ -45,55 +44,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
-                        <input type="text"
-                            id="FileExpenditure"
-                            name="FileExpenditure"
-                            formControlName="FileExpenditure"
-                            [ngClass]="{ 'is-invalid':  submitted && f.FileExpenditure.errors }"
-                            placeholder="File Expenditure"
-                            maxlength="12"                                                                                                     
-                            class="form-control col-md-12 float-right"
-                            prefix="Rs. "
-                            separatorLimit="000"
-                            mask="separator.3"
-                            thousandSeparator=",">
-                        <div *ngIf="submitted && f.FileExpenditure.errors" class="invalid-feedback">
-                            <div *ngIf="f.FileExpenditure.errors.maxlength">Max amount would be 99 lacs</div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="row">
-                    <div class="col-md-6 pr-3 mt-2" style="min-width: 40px;">
-                        <input type="text"
-                            id="RegisterAmount"
-                            name="RegisterAmount"
-                            formControlName="RegisterAmount"
-                            [ngClass]="{ 'is-invalid':  submitted && f.RegisterAmount.errors }"
-                            placeholder="Register Amount"
-                            maxlength="12"                                                                                                     
-                            class="form-control col-md-12 float-right"
-                            prefix="Rs. "
-                            separatorLimit="000"
-                            mask="separator.3"
-                            thousandSeparator=",">
-                        <div *ngIf="submitted && f.RegisterAmount.errors" class="invalid-feedback">
-                            <div *ngIf="f.RegisterAmount.errors.maxlength">Max amount would be 99 lacs</div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="row">                    
-                    <div class="col-md-12 pr-3 mt-2">
-                        <button class="form-control col-md-6" mdbBtn block="true" class="btn btn-primary float-right" type="submit">Submit</button>
-                    </div>
-                </div>      -->
             </form>
         </div>
-
-        
-        <div class="col-md-12 pr-3 mt-2" *ngIf="ReceiptList != ''">
-            <table class="table table-hover table-responsive receiptTable">
+              
+        <div class="col-md-12 pr-3 mt-2 tbl-class" *ngIf="ReceiptList != ''">
+            <table class="table table-hover table-responsive">
                 <th align-center>Receipt Date</th>
                 <th align-center>Serial</th>
                 <th align-center>File</th>
@@ -129,13 +84,8 @@
                         <td align-center>{{rl.FileExpenditure}}</td>
                         <td align-center>{{rl.TotalExpenditure}}</td>
                         <td align-center>{{rl.TotalAmount - rl.TotalExpenditure}}</td>
-                    <!-- <td *ngIf="router.url == '/employee'">
-                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(e.EmployeeId)"></i>
-                    </td> -->
                 </tr>
             </table>
         </div>
     </div>
 </div>
-
-

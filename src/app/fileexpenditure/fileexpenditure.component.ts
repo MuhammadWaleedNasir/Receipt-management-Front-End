@@ -30,7 +30,6 @@ export class FileexpenditureComponent implements OnInit {
 
   ngOnInit() {
     this.initialiseInvites();
-
     this.GetSectors();
   }
 

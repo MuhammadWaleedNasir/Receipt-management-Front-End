@@ -7,7 +7,7 @@ import { AuthServiceService } from './../shared/auth-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: []
 })
 export class LoginComponent implements OnInit {
   Form : FormGroup;
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl(url, { skipLocationChange: false })
         .then(() => {
           if (reload) location.reload();
-          // this.router.navigate([decodeURI(this._location.path())]);
         });
     }, 1500);
   }
@@ -53,17 +52,14 @@ export class LoginComponent implements OnInit {
       if (response && response.token) {
         this.service.isLoggedInActive(true);
         localStorage.setItem('access-token', response.token);
-        //this.service.isNavActive;
-        // this.router.navigate(['/receipt']);
-        this.refresh('/receipt', true);
+         this.router.navigate(['/receipt']);
       }
       else{
         this.toastr.warning('Username or password is incorrect','Error');
       }
     }, (err) => {
       this.service.isLoggedInActive(false);
-
-      alert('Error'+err);
+      alert('Error '+err);
     });
   }
 

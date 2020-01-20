@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewMessrsServiceService {
-  readonly rootUrl = 'https://localhost:44355/api/receipt';
+  readonly rootUrl = environment.baseUrl + 'receipt';
   constructor(private http:HttpClient) { }
 
   GetMessrs () {

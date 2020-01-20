@@ -3,7 +3,7 @@
     <hr />
     <div class="row">
         <div class="col-md-12">
-            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form class="m-auto col-sm-6" [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="row">  
                     <div class="col-md-6 pr-3 mt-2">
                         <ng-select 
@@ -15,7 +15,6 @@
                             [selectableGroupAsModel]="false"
                             [searchable]="true" 
                             [clearable]="true"
-                            [(ngModel)]="selected"
                             (change)="GetHouseList($event)">
                             <ng-option *ngFor="let s of SectorList" [value]="s.Value" [disabled]="s.disabled">
                                 {{s.Text}}
@@ -97,8 +96,8 @@
                 </div>     
             </form>
         </div>
-        <div class="col-md-12 pr-3 mt-2" *ngIf="ReceiptList != ''">
-            <table class="table table-hover">
+        <div class="col-md-12 mt-2" *ngIf="ReceiptList != ''">
+            <table class="table table-hover table-responsive tbl-display">
                 <th align-center>Receipt Date</th>
                 <th align-center>Serial</th>
                 <th align-center>File</th>
@@ -122,9 +121,6 @@
                     <td align-center>{{rl.PaymentDate}}</td>
                     <td align-center>{{rl.Payment}}</td>
                     <td align-center>{{rl.Balance}}</td>
-                    <!-- <td *ngIf="router.url == '/employee'">
-                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(e.EmployeeId)"></i>
-                    </td> -->
                 </tr>
             </table>
         </div>

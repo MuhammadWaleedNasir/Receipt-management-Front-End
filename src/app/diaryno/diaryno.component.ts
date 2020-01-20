@@ -83,11 +83,6 @@ export class DiarynoComponent implements OnInit {
       var newDatee = dateVall.getDate() +'/' + (dateVall.getMonth()+1) + '/'+ dateVall.getFullYear();
       this.Form.get('DiaryDate').setValue(newDatee);
     }
-    // var registerAmount = parseInt(this.Form.get('RegisterAmount').value);
-    // if (registerAmount <= 0) {
-    //   this.toastr.warning('Amount must be greater than 0', 'Receipt');
-    //   return;
-    // }
     this.receiptService.UpdateReceipt(this.Form.value).subscribe(
       res => {
         if (res == 0) {

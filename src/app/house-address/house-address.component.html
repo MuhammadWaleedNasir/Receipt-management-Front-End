@@ -3,7 +3,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form [formGroup]="Form" (ngSubmit)="onSubmit(Form)">
+            <form [formGroup]="Form" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-12 pr-3 mt-2">
                         <select id="SectorID" name="SectorID" formControlName="SectorID" (change)="GetHouseList($event.target.value)"

@@ -21,7 +21,7 @@ export class CreateEmployeeComponent implements OnInit {
               private fb:FormBuilder,
               private toastr: ToastrService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              public router: Router) { }
 
   get f() { return this.Form.controls; }
   

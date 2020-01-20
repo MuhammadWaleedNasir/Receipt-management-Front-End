@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GenerateReceiptService } from '../shared/generate-receipt.service';
-import { NewMessrsServiceService } from '../shared/new-messrs-service.service';
-import { NewfilenumberServiceService } from '../shared/newfilenumber-service.service';
 import { HouseaddressService } from '../shared/houseaddress.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,10 +33,8 @@ export class EditReceiptComponent implements OnInit {
     get f() { return this.Form.controls; }
 
   ngOnInit() {
-
     this.initialiseInvites();
     this.GetSectors();
-
   }
 
   initialiseInvites() {
@@ -122,9 +118,7 @@ export class EditReceiptComponent implements OnInit {
         else {
           this.toastr.success('Receipt updated successfully', 'Receipt');
           this.GetReceiptList(this.Form.get('HouseID').value);
-          this.Form.reset();
-          //this.initialiseInvites();
-          
+          this.Form.reset();         
         }
       },
       err => {

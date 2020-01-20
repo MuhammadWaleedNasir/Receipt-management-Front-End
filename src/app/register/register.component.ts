@@ -113,8 +113,6 @@ export class RegisterComponent implements OnInit {
           this.toastr.success('Receipt updated successfully', 'Receipt');
           this.GetReceiptList(this.Form.get('HouseID').value);
           this.Form.reset();
-          //this.initialiseInvites();
-          
         }
       },
       err => {
@@ -122,7 +120,5 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
-  
 
 }
